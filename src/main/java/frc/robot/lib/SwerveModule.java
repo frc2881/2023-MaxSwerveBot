@@ -81,14 +81,14 @@ public class SwerveModule implements Sendable {
     m_turningSparkMax.restoreFactoryDefaults();
 
     // SDS Module is inverted relative to the MAXSwerve
-    for (int i = 0; i < 10; i += 1) {
-      m_drivingSparkMax.setInverted(true); 
-      if (m_drivingSparkMax.getLastError() != REVLibError.kOk ) {
-        Logger.log(m_location.toString() + " swerve module driving motor controller inversion error.");
-      } else {
-        break;
-      }
-    }
+    // for (int i = 0; i < 10; i += 1) {
+    //   m_drivingSparkMax.setInverted(true); 
+    //   if (m_drivingSparkMax.getLastError() != REVLibError.kOk ) {
+    //     Logger.log(m_location.toString() + " swerve module driving motor controller inversion error.");
+    //   } else {
+    //     break;
+    //   }
+    // }
 
     for (int i = 0; i < 10; i += 1) {
       m_turningSparkMax.setInverted(true); 

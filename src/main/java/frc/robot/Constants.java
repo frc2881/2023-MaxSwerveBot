@@ -37,10 +37,10 @@ public class Constants {
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
     // Angular offsets of the modules relative to the chassis in radians
-    public static final double kFrontLeftChassisAngularOffset = 5.9359; 
-    public static final double kFrontRightChassisAngularOffset = 2.8309; 
-    public static final double kRearLeftChassisAngularOffset =  1.5791; 
-    public static final double kRearRightChassisAngularOffset = 4.4555; 
+    public static final double kFrontLeftChassisAngularOffset = 2.01 - (Math.PI/2); 
+    public static final double kFrontRightChassisAngularOffset = 0.3 + Math.PI; 
+    public static final double kRearLeftChassisAngularOffset =  2.54; 
+    public static final double kRearRightChassisAngularOffset = 0.845 + (Math.PI/2); 
 
     // SPARK MAX CAN IDs
     public static final int kFrontLeftDrivingCanId = 15;
@@ -86,7 +86,7 @@ public class Constants {
     public static final double kDrivingEncoderPositionFactor = (kWheelDiameterMeters * Math.PI) / kDrivingMotorReduction; // meters
     public static final double kDrivingEncoderVelocityFactor = ((kWheelDiameterMeters * Math.PI) / kDrivingMotorReduction) / 60.0; // meters per second
 
-    public static final double kTurningEncoderPositionFactor = (2 * Math.PI) / kSteeringMotorReduction; // radians
+    public static final double kTurningEncoderPositionFactor = (2 * Math.PI);// / kSteeringMotorReduction; // radians
     public static final double kTurningEncoderVelocityFactor = ((2 * Math.PI) / kSteeringMotorReduction) / 60.0; // radians per second
 
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians/ -math.pi
