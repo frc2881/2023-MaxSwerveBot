@@ -84,7 +84,7 @@ public class RobotContainer {
     PathPlannerTrajectory moveToBalance6Path = PathPlanner.loadPath("Balance 6", Constants.Autonomous.kMoveToBalanceMaxVelocity, Constants.Autonomous.kMoveToBalanceMaxAccel);
     PathPlannerTrajectory balanceMidPath = PathPlanner.loadPath("Mid Balance", Constants.Autonomous.kBalanceMaxVelocity, Constants.Autonomous.kBalanceMaxAccel);
 
-    PathPlannerTrajectory testPath = PathPlanner.loadPath("Test", 2.0, 3.0);
+    PathPlannerTrajectory testPath = PathPlanner.loadPath("Test", 1.0, 1.0);
 
     m_autonomousChooser.setDefaultOption("None", null);
 

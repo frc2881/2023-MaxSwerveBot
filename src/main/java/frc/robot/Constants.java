@@ -23,7 +23,7 @@ public class Constants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4.8;
-    public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
+    public static final double kMaxAngularSpeed = 3 * Math.PI; // radians per second
 
     // Chassis configuration
     public static final double kTrackWidth = Units.inchesToMeters(18.75);
@@ -37,10 +37,10 @@ public class Constants {
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
     // Angular offsets of the modules relative to the chassis in radians
-    public static final double kFrontLeftChassisAngularOffset = 2.01 - (Math.PI/2); 
-    public static final double kFrontRightChassisAngularOffset = 0.3 + Math.PI; 
-    public static final double kRearLeftChassisAngularOffset =  2.54; 
-    public static final double kRearRightChassisAngularOffset = 0.845 + (Math.PI/2); 
+    public static final double kFrontLeftChassisAngularOffset = 4.285 - (Math.PI/2); 
+    public static final double kFrontRightChassisAngularOffset = 5.977; 
+    public static final double kRearLeftChassisAngularOffset =  3.733 - Math.PI; 
+    public static final double kRearRightChassisAngularOffset = 5.443 + (Math.PI/2); 
 
     // SPARK MAX CAN IDs
     public static final int kFrontLeftDrivingCanId = 15;
@@ -78,7 +78,7 @@ public class Constants {
     public static final double kWheelDiameterMeters = 0.0762; // 3 : 0.0762; // 3.75 : 0.09525; //3.8 : 0.09652; // 4 : 0.1016; //Units.inchesToMeters(4.0);
     public static final double kWheelCircumferenceMeters = kWheelDiameterMeters * Math.PI;
     // 45 teeth on the wheel's bevel gear, 22 teeth on the first-stage spur gear, 15 teeth on the bevel pinion
-    public static final double kDrivingMotorReduction = (45.0 *22.0) / (kDrivingMotorPinionTeeth * 15.0);
+    public static final double kDrivingMotorReduction = (45.0 * 22.0) / (kDrivingMotorPinionTeeth * 15.0);
     public static final double kDriveWheelFreeSpeedRps = (kDrivingMotorFreeSpeedRps * kWheelCircumferenceMeters) / kDrivingMotorReduction;
 
     public static final double kSteeringMotorReduction = 150.0 / 7.0;

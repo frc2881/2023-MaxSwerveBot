@@ -48,6 +48,7 @@ public class SwerveModule implements Sendable {
   private int m_index = 0;
   private double m_sum = 0.0;
   private double m_chassisAngularOffset = 0;
+  private double m_setSpeed = 0;
 
   private final DoubleLogEntry m_logDrivingAppliedOutput;
   private final DoubleLogEntry m_logDrivingBusVoltage;
@@ -90,14 +91,14 @@ public class SwerveModule implements Sendable {
     //   }
     // }
 
-    for (int i = 0; i < 10; i += 1) {
-      m_turningSparkMax.setInverted(true); 
-      if (m_turningSparkMax.getLastError() != REVLibError.kOk ) {
-        Logger.log(m_location.toString() + " swerve module turning motor controller inversion error.");
-      } else {
-        break;
-      }
-    }
+    // for (int i = 0; i < 10; i += 1) {
+    //   m_turningSparkMax.setInverted(true); 
+    //   if (m_turningSparkMax.getLastError() != REVLibError.kOk ) {
+    //     Logger.log(m_location.toString() + " swerve module turning motor controller inversion error.");
+    //   } else {
+    //     break;
+    //   }
+    // }
 
     // Setup encoders and PID controllers for the driving and turning SPARKS MAX.
     m_drivingEncoder = m_drivingSparkMax.getEncoder();
@@ -118,6 +119,8 @@ public class SwerveModule implements Sendable {
     // APIs.
     m_turningEncoder.setPositionConversionFactor(Constants.SwerveModule.kTurningEncoderPositionFactor);
     m_turningEncoder.setVelocityConversionFactor(Constants.SwerveModule.kTurningEncoderVelocityFactor);
+
+    m_turningEncoder.setInverted(Constants.SwerveModule.kTurningEncoderInverted);
 
     // Enable PID wrap around for the turning motor. This will allow the PID
     // controller to go through 0 to get to the setpoint i.e. going from 350 degrees
@@ -248,6 +251,7 @@ public class SwerveModule implements Sendable {
     // m_drivingPIDController.setP(SmartDashboard.getNumber("P", Constants.SwerveModule.kDrivingP)); ONLY FOR TESTING: CAUSES LOOP OVERRUNS
     // m_drivingPIDController.setD(SmartDashboard.getNumber("D", Constants.SwerveModule.kDrivingD)); ONLY FOR TESTING: CAUSES LOOP OVERRUNS
     m_drivingPIDController.setReference(optimizedDesiredState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);
+    m_setSpeed = optimizedDesiredState.speedMetersPerSecond;
     m_turningPIDController.setReference(optimizedDesiredState.angle.getRadians(), CANSparkMax.ControlType.kPosition);
 
   }
@@ -275,5 +279,7 @@ public class SwerveModule implements Sendable {
     builder.addDoubleProperty(key + "Steering/AbsolutePosition", this::getSteeringAbsolutePosition, null);
 
     builder.addDoubleProperty(key + "Driving/Velocity", this::getDrivingVelocity, null);
+    builder.addDoubleProperty(key + "Driving/AppliedOutput", m_drivingSparkMax::getAppliedOutput, null);
+    builder.addDoubleProperty(key + "Driving/SetSpeed", () -> m_setSpeed, null);
   }
 }
